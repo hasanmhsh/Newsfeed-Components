@@ -102,10 +102,42 @@ const data = [
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+*/
+/*
+
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: return the entire component.
+  */
+
+  function createArticle(attributes){
+    const article = document.createElement('div');
+    const articleTitle = document.createElement('h2');
+    const dateParagraph = document.createElement('p');
+    const firstParagraph = document.createElement('p');
+    const secondParagraph = document.createElement('p');
+    const thirdParagraph = document.createElement('p');
+    const expandButton = document.createElement('span');
+    article.classList.add('article');
+    dateParagraph.classList.add('date');
+    expandButton.classList.add('expanButton');
+    articleTitle.textContent = attributes.title;
+    dateParagraph.textContent = attributes.date;
+    firstParagraph.textContent = attributes.firstParagraph;
+    secondParagraph.textContent = secondParagraph.date;
+    thirdParagraph.textContent = attributes.thirdParagraph;
+    article.appendChild(articleTitle);
+    article.appendChild(dateParagraph);
+    article.appendChild(firstParagraph);
+    article.appendChild(secondParagraph);
+    article.appendChild(thirdParagraph);
+    article.appendChild(expandButton);
+    expandButton('click',e=>article.classList.toggle('article-open'));
+    return article;
+  }
+
+/*
 
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
 
