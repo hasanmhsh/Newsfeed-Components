@@ -121,7 +121,7 @@ const data = [
     const expandButton = document.createElement('span');
     article.classList.add('article');
     dateParagraph.classList.add('date');
-    expandButton.classList.add('expanButton');
+    expandButton.classList.add('expandButton');
     articleTitle.textContent = attributes.title;
     dateParagraph.textContent = attributes.date;
     firstParagraph.textContent = attributes.firstParagraph;
@@ -133,14 +133,28 @@ const data = [
     article.appendChild(secondParagraph);
     article.appendChild(thirdParagraph);
     article.appendChild(expandButton);
-    expandButton('click',e=>article.classList.toggle('article-open'));
+    expandButton.textContent='▼'
+    expandButton.addEventListener('click',e=>{article.classList.toggle('article-open');e.target.textContent=e.target.textContent==='▲'?'▼':'▲'});
     return article;
   }
 
 /*
 
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+*/
+data.forEach(item=>document.querySelector('.articles').appendChild(createArticle(item)));
+/*
+
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const myArticleData = {
+  title:"my title",
+  date:'Jan 20th, 2020',
+  firstParagraph:"paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph ",
+  secondParagraph:"paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph ",
+  thirdParagraph:"paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph "
+};
+
+document.querySelector('.articles').appendChild(createArticle(myArticleData));
